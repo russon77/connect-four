@@ -33,6 +33,10 @@ class Board(object):
 
     def display(self):
         # display is a little trickier due to the column major nature we are attempting
+
+        # display column numbers
+        print([str(i) for i in range(0, len(self.board))])
+
         for i in range(len(self.board[0]) - 1, -1, -1):
             print([self.board[j][i] for j in range(0, len(self.board))])
 
@@ -43,6 +47,11 @@ class Board(object):
         :param piece: character to place into column
         :return: True if piece was put into board. False otherwise
         """
+
+        # bounds check
+        if column > 6 or column < 0:
+            return False
+
         for i in range(0, 6):
             if ' ' == self.board[column][i]:
                 self.board[column][i] = piece
